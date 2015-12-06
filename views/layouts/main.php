@@ -36,7 +36,7 @@ use yii\widgets\Breadcrumbs;
         'items' => [
             ['label' => 'Assortment', 'items' => [
                 ['label' => 'Categories', 'url' => ['/category']],
-                ['label' => 'Products', 'url' => ['/order']],
+                ['label' => 'Products', 'url' => ['/product']],
             ]],
             ['label' => 'People', 'items' => [
                 ['label' => 'Customers', 'url' => ['/customer']],

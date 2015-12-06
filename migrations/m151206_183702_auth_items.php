@@ -7,21 +7,19 @@ class m151206_183702_auth_items extends Migration
 {
     public $models = [
         'Category',
-        'Customercustomerdemo',
-        'Customerdemographic',
+        'CustomerCustomerDemo',
+        'CustomerDemographic',
         'Customer',
         'Employee',
-        'Employeeterritory',
+        'EmployeeTerritory',
         'OrderDetail',
         'Order',
         'Product',
         'Region',
         'Shipper',
-        'ShippersTmp',
         'Supplier',
         'Territory',
         'User',
-        'Usstate',
     ];
 
     public function safeUp()

@@ -171,9 +171,9 @@ $config = [
             'modelClass' => 'app\models\Supplier',
             'searchModelClass' => 'app\models\search\Supplier',
         ],
-        'terittory' => [
+        'territory' => [
             'class' => \netis\crud\crud\ActiveController::className(),
-            'modelClass' => 'app\models\Terittory',
+            'modelClass' => 'app\models\Territory',
             'searchModelClass' => 'app\models\search\Territory',
         ],
     ],
