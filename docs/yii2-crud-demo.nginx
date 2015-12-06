@@ -1,0 +1,47 @@
+server {
+    server_name yii2-crud-demo.local;
+    access_log /var/log/nginx/yii2-crud-demo-access.log;
+    error_log /var/log/nginx/yii2-crud-demo-error.log debug;
+    root /srv/http/yii2-crud-demo/web;
+
+    location / {
+		try_files $uri @php_index;
+    }
+
+    location /favicon.ico {
+	    try_files /images/favicon.ico 404;
+    }
+
+    location ~ /\. {
+        deny all;
+    }
+
+    location ~* ^/assets/ {
+        # Per RFC2616 - 1 year maximum expiry
+        # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+        expires 1y;
+        add_header Cache-Control public;
+
+        # Some browsers still send conditional-GET requests if there's a
+        # Last-Modified header or an ETag header even if they haven't
+        # reached the expiry date sent in the Expires header.
+        add_header Last-Modified "";
+        add_header ETag "";
+        break;
+    }
+
+    location @php_index {
+        include fastcgi_params;
+        fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+        #fastcgi_pass   127.0.0.1:9000;
+        #fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_param YII_ENV dev;
+        fastcgi_param YII_DEBUG true;
+        fastcgi_param YII_TRAINING true;
+        fastcgi_param YII_DEBUG_SHOW_PROFILER true;
+        #fastcgi_param YII_DEBUG_DISPLAY_TIME true;
+        fastcgi_read_timeout 3600;
+    }
+}
+
