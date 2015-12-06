@@ -12,6 +12,7 @@ $config = [
     ],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => '/order',
     'components' => [
         'authManager' => [
             'class' => 'netis\rbac\DbManager',
