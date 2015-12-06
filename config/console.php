@@ -14,6 +14,10 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'netis\rbac\DbManager',
+            'cache' => 'cache',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

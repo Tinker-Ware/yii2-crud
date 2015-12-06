@@ -7,6 +7,10 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'authManager' => [
+            'class' => 'netis\rbac\DbManager',
+            'cache' => 'cache',
+        ],
         'request' => [
             'cookieValidationKey' => 'qmai9mURWrsIvC6Ydf-1xNcOoJJBuBV8',
         ],
@@ -20,6 +24,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
+            'loginUrl' => ['usr/login'],
             'enableAutoLogin' => true,
         ],
         'mailer' => [
@@ -82,6 +87,12 @@ $config = [
             'class' => \netis\crud\crud\ActiveController::className(),
             'modelClass' => 'app\models\Terittory',
             'searchModelClass' => 'app\models\search\Territory',
+        ],
+    ],
+    'modules' => [
+        'usr' => [
+            'class' => 'nineinchnick\usr\Module',
+            'requireVerifiedEmail' => false,
         ],
     ],
     'params' => $params,
