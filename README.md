@@ -15,4 +15,6 @@ CRUD steps:
 * added the gii model generator to _config/web.php_
 * generated models
 * registered default controllers in the application controller map
+* registered the crudModelsMap application component
 * created auth items and associations for default user
+* configured some components: view (default views path), aliases, formatter
