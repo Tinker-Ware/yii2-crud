@@ -20,6 +20,13 @@ $config = [
         'request' => [
             'cookieValidationKey' => 'qmai9mURWrsIvC6Ydf-1xNcOoJJBuBV8',
         ],
+        'response' => [
+            'formatters' => [
+                'csv' => 'netis\crud\web\CsvResponseFormatter',
+                'pdf' => 'netis\crud\web\PdfResponseFormatter',
+                'xls' => 'netis\crud\web\XlsResponseFormatter',
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
