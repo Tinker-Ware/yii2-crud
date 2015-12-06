@@ -71,7 +71,7 @@ class OrderDetail extends \netis\crud\db\ActiveRecord
         return array_merge(parent::behaviors(), [
             'labels' => [
                 'class' => 'netis\crud\db\LabelsBehavior',
-                'attributes' => ['OrderID'],
+                'attributes' => ['OrderID', 'ProductID'],
                 'crudLabels' => [
                     'default'  => Yii::t('app', 'Order Detail'),
                     'relation' => Yii::t('app', 'Order Details'),

@@ -100,7 +100,7 @@ class Order extends \netis\crud\db\ActiveRecord
         return array_merge(parent::behaviors(), [
             'labels' => [
                 'class' => 'netis\crud\db\LabelsBehavior',
-                'attributes' => ['CustomerID'],
+                'attributes' => ['OrderID'],
                 'crudLabels' => [
                     'default'  => Yii::t('app', 'Order'),
                     'relation' => Yii::t('app', 'Orders'),

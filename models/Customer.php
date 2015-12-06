@@ -86,7 +86,7 @@ class Customer extends \netis\crud\db\ActiveRecord
         return array_merge(parent::behaviors(), [
             'labels' => [
                 'class' => 'netis\crud\db\LabelsBehavior',
-                'attributes' => ['CustomerID'],
+                'attributes' => ['ContactName'],
                 'crudLabels' => [
                     'default'  => Yii::t('app', 'Customer'),
                     'relation' => Yii::t('app', 'Customers'),

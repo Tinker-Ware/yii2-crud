@@ -67,7 +67,7 @@ class Territory extends \netis\crud\db\ActiveRecord
         return array_merge(parent::behaviors(), [
             'labels' => [
                 'class' => 'netis\crud\db\LabelsBehavior',
-                'attributes' => ['TerritoryID'],
+                'attributes' => ['TerritoryDescription'],
                 'crudLabels' => [
                     'default'  => Yii::t('app', 'Territory'),
                     'relation' => Yii::t('app', 'Territories'),
