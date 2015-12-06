@@ -18,3 +18,8 @@ CRUD steps:
 * registered the crudModelsMap application component
 * created auth items and associations for default user
 * configured some components: view (default views path), aliases, formatter
+
+## Usage
+
+`composer create-project -s dev netis/yii2-crud-demo crud.niix.pl/`
+
