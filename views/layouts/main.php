@@ -32,9 +32,44 @@ use yii\widgets\Breadcrumbs;
         ],
     ]);
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav'],
+        'items' => [
+            ['label' => 'Assortment', 'items' => [
+                ['label' => 'Categories', 'url' => ['/category']],
+                ['label' => 'Products', 'url' => ['/order']],
+            ]],
+            ['label' => 'People', 'items' => [
+                ['label' => 'Customers', 'url' => ['/customer']],
+                ['label' => 'Customer Demographics', 'url' => ['/customer-demographic']],
+                ['label' => 'Employees', 'url' => ['/employee']],
+            ]],
+            ['label' => 'Orders', 'items' => [
+                ['label' => 'Orders', 'url' => ['/order']],
+                ['label' => 'Order Details', 'url' => ['/order-detail']],
+                ['label' => 'Suppliers', 'url' => ['/supplier']],
+            ]],
+            ['label' => 'Transport', 'items' => [
+                ['label' => 'Shippers', 'url' => ['/shipper']],
+                ['label' => 'Regions', 'url' => ['/region']],
+                ['label' => 'Territories', 'url' => ['/territory']],
+            ]],
+        ],
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            [
+                'label' => Yii::t('app', 'Login'),
+                'url' => ['/usr/login'],
+                'visible' => Yii::$app->user->isGuest,
+            ],
+            [
+                'label' => Yii::t('app', 'Logout').' ('
+                . (Yii::$app->user->identity === null ? '' : Yii::$app->user->identity->username) . ')',
+                'url' => ['/usr/logout'],
+                'visible' => !Yii::$app->user->isGuest,
+                'linkOptions' => ['data-method' => 'post'],
+            ],
         ],
     ]);
     NavBar::end();
@@ -44,6 +79,12 @@ use yii\widgets\Breadcrumbs;
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <div id="menu" class="hidden-print">
+            <?= \yii\bootstrap\Nav::widget([
+                'items' => isset($this->params['menu']) ? $this->params['menu'] : [],
+                'options' => ['class' => 'nav nav-pills'],
+            ]) ?>
+        </div>
         <?= $content ?>
     </div>
 </div>
