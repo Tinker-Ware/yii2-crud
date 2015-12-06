@@ -12,8 +12,8 @@ class m151206_180249_foreign_keys extends Migration
         $this->addForeignKey('employees_reportsto_fkey', '{{Employees}}', '[[ReportsTo]]', '{{Employees}}', '[[EmployeeID]]');
         $this->addForeignKey('employeeterritories_employeeid_fkey', '{{EmployeeTerritories}}', '[[EmployeeID]]', '{{Employees}}', '[[EmployeeID]]');
         $this->addForeignKey('employeeterritories_territoryid_fkey', '{{EmployeeTerritories}}', '[[TerritoryID]]', '{{Territories}}', '[[TerritoryID]]');
-        $this->addForeignKey('order_details_orderid_fkey', '{{Order Details}}', '[[OrderID]]', '{{Orders}}', '[[OrderID]]');
-        $this->addForeignKey('order_details_productid_fkey', '{{Order Details}}', '[[ProductID]]', '{{Products}}', '[[ProductID]]');
+        $this->addForeignKey('order_details_orderid_fkey', '{{OrderDetails}}', '[[OrderID]]', '{{Orders}}', '[[OrderID]]');
+        $this->addForeignKey('order_details_productid_fkey', '{{OrderDetails}}', '[[ProductID]]', '{{Products}}', '[[ProductID]]');
         $this->addForeignKey('orders_customerid_fkey', '{{Orders}}', '[[CustomerID]]', '{{Customers}}', '[[CustomerID]]');
         $this->addForeignKey('orders_employeeid_fkey', '{{Orders}}', '[[EmployeeID]]', '{{Employees}}', '[[EmployeeID]]');
         $this->addForeignKey('orders_shipvia_fkey', '{{Orders}}', '[[ShipVia]]', '{{Shippers}}', '[[ShipperID]]');
@@ -29,8 +29,8 @@ class m151206_180249_foreign_keys extends Migration
         $this->dropForeignKey('employees_reportsto_fkey', '{{Employees}}');
         $this->dropForeignKey('employeeterritories_employeeid_fkey', '{{EmployeeTerritories}}');
         $this->dropForeignKey('employeeterritories_territoryid_fkey', '{{EmployeeTerritories}}');
-        $this->dropForeignKey('order_details_orderid_fkey', '{{Order Details}}');
-        $this->dropForeignKey('order_details_productid_fkey', '{{Order Details}}');
+        $this->dropForeignKey('order_details_orderid_fkey', '{{OrderDetails}}');
+        $this->dropForeignKey('order_details_productid_fkey', '{{OrderDetails}}');
         $this->dropForeignKey('orders_customerid_fkey', '{{Orders}}');
         $this->dropForeignKey('orders_employeeid_fkey', '{{Orders}}');
         $this->dropForeignKey('orders_shipvia_fkey', '{{Orders}}');
