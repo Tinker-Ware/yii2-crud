@@ -2,6 +2,26 @@
 
 $params = require(__DIR__ . '/params.php');
 
+/**
+ * @param \netis\crud\crud\Action $action
+ * @param string $context
+ * @param \app\models\Category $model
+ * @return array
+ */
+$categoryFields = function ($action, $context, $model) {
+    return array_diff($action::getDefaultFields($model), ['Picture']);
+};
+
+/**
+ * @param \netis\crud\crud\Action $action
+ * @param string $context
+ * @param \app\models\Category $model
+ * @return array
+ */
+$employeeFields = function ($action, $context, $model) {
+    return array_diff($action::getDefaultFields($model), ['Photo']);
+};
+
 $config = [
     'id' => 'yii2-crud-demo',
     'name' => 'Yii2 CRUD demo',
@@ -93,6 +113,12 @@ $config = [
             'class' => \netis\crud\crud\ActiveController::className(),
             'modelClass' => 'app\models\Category',
             'searchModelClass' => 'app\models\search\Category',
+            'actionsClassMap' => [
+                'index' => ['fields' => $categoryFields],
+                'view' => ['fields' => $categoryFields],
+                'update' => ['fields' => $categoryFields],
+                'relation' => ['fields' => $categoryFields],
+            ],
         ],
         'customer' => [
             'class' => \netis\crud\crud\ActiveController::className(),
@@ -108,6 +134,12 @@ $config = [
             'class' => \netis\crud\crud\ActiveController::className(),
             'modelClass' => 'app\models\Employee',
             'searchModelClass' => 'app\models\search\Employee',
+            'actionsClassMap' => [
+                'index' => ['fields' => $employeeFields],
+                'view' => ['fields' => $employeeFields],
+                'update' => ['fields' => $employeeFields],
+                'relation' => ['fields' => $employeeFields],
+            ],
         ],
         'order' => [
             'class' => \netis\crud\crud\ActiveController::className(),

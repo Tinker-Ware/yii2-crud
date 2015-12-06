@@ -19,6 +19,10 @@ CRUD steps:
 * created auth items and associations for default user
 * configured some components: view (default views path), aliases, formatter
 
+CRUD customization:
+
+* overriden Category and Employee picture fields
+
 ## Usage
 
 `composer create-project -s dev netis/yii2-crud-demo crud.niix.pl/`
