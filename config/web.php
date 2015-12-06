@@ -68,7 +68,7 @@ $config = [
                 'app\models\User' => '/user',
                 'app\models\Category' => '/category',
                 'app\models\Customer' => '/customer',
-                'app\models\Customerdemographic' => '/customerdemographic',
+                'app\models\CustomerDemographic' => '/customer-demographic',
                 'app\models\Employee' => '/employee',
                 'app\models\Order' => '/order',
                 'app\models\OrderDetail' => '/order-detail',
@@ -98,10 +98,10 @@ $config = [
             'modelClass' => 'app\models\Customer',
             'searchModelClass' => 'app\models\search\Customer',
         ],
-        'customerdemographic' => [
+        'customer-demographic' => [
             'class' => \netis\crud\crud\ActiveController::className(),
-            'modelClass' => 'app\models\Customerdemographic',
-            'searchModelClass' => 'app\models\search\Customerdemographic',
+            'modelClass' => 'app\models\CustomerDemographic',
+            'searchModelClass' => 'app\models\search\CustomerDemographic',
         ],
         'employee' => [
             'class' => \netis\crud\crud\ActiveController::className(),

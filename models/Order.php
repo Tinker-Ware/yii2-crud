@@ -141,7 +141,7 @@ class Order extends \netis\crud\db\ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(Product::className(), ['ProductID' => 'ProductID'])->viaTable('Order Details', ['OrderID' => 'OrderID']);
+        return $this->hasMany(Product::className(), ['ProductID' => 'ProductID'])->viaTable('OrderDetails', ['OrderID' => 'OrderID']);
     }
 
     /**
