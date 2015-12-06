@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\ShipperQuery;
 
 /**
- * This is the model class for table "shippers".
+ * This is the model class for table "Shippers".
  *
  * @property integer $ShipperID
  * @property string $CompanyName
@@ -21,7 +21,7 @@ class Shipper extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'shippers';
+        return 'Shippers';
     }
 
     /**

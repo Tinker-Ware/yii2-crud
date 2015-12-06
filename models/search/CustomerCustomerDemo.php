@@ -5,13 +5,13 @@ namespace app\models\search;
 use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
-use app\models\Customercustomerdemo as CustomercustomerdemoModel;
-use app\models\query\CustomercustomerdemoQuery;
+use app\models\CustomerCustomerDemo as CustomerCustomerDemoModel;
+use app\models\query\CustomerCustomerDemoQuery;
 
 /**
- * Customercustomerdemo represents the model behind the search form about `\app\models\Customercustomerdemo`.
+ * CustomerCustomerDemo represents the model behind the search form about `\app\models\CustomerCustomerDemo`.
  */
-class Customercustomerdemo extends CustomercustomerdemoModel implements ActiveSearchInterface
+class CustomerCustomerDemo extends CustomerCustomerDemoModel implements ActiveSearchInterface
 {
     use \netis\crud\db\ActiveSearchTrait;
 
@@ -48,10 +48,10 @@ class Customercustomerdemo extends CustomercustomerdemoModel implements ActiveSe
 
     /**
      * @inheritdoc
-     * @return CustomercustomerdemoQuery the active query used by this AR class.
+     * @return CustomerCustomerDemoQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new CustomercustomerdemoQuery('app\models\Customercustomerdemo');
+        return new CustomerCustomerDemoQuery('app\models\CustomerCustomerDemo');
     }
 }

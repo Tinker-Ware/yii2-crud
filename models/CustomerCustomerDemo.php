@@ -3,25 +3,25 @@
 namespace app\models;
 
 use Yii;
-use app\models\query\CustomercustomerdemoQuery;
+use app\models\query\CustomerCustomerDemoQuery;
 
 /**
- * This is the model class for table "customercustomerdemo".
+ * This is the model class for table "CustomerCustomerDemo".
  *
  * @property string $CustomerID
  * @property string $CustomerTypeID
  *
- * @property Customerdemographic $customerType
+ * @property CustomerDemographic $customerType
  * @property Customer $customer
  */
-class Customercustomerdemo extends \netis\crud\db\ActiveRecord
+class CustomerCustomerDemo extends \netis\crud\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'customercustomerdemo';
+        return 'CustomerCustomerDemo';
     }
 
     /**
@@ -42,7 +42,7 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
     {
         return [
             [['CustomerID', 'CustomerTypeID'], 'required'],
-            [['CustomerTypeID'], 'exist', 'skipOnError' => true, 'targetClass' => Customerdemographic::className(), 'targetAttribute' => ['CustomerTypeID' => 'CustomerTypeID']],
+            [['CustomerTypeID'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerDemographic::className(), 'targetAttribute' => ['CustomerTypeID' => 'CustomerTypeID']],
             [['CustomerID'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['CustomerID' => 'CustomerID']],
         ];
     }
@@ -65,13 +65,13 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
                 'class' => 'netis\crud\db\LabelsBehavior',
                 'attributes' => ['CustomerID'],
                 'crudLabels' => [
-                    'default'  => Yii::t('app', 'Customercustomerdemo'),
-                    'relation' => Yii::t('app', 'Customercustomerdemos'),
-                    'index'    => Yii::t('app', 'Browse Customercustomerdemos'),
-                    'create'   => Yii::t('app', 'Create Customercustomerdemo'),
-                    'read'     => Yii::t('app', 'View Customercustomerdemo'),
-                    'update'   => Yii::t('app', 'Update Customercustomerdemo'),
-                    'delete'   => Yii::t('app', 'Delete Customercustomerdemo'),
+                    'default'  => Yii::t('app', 'Customer Customer Demo'),
+                    'relation' => Yii::t('app', 'Customer Customer Demos'),
+                    'index'    => Yii::t('app', 'Browse Customer Customer Demos'),
+                    'create'   => Yii::t('app', 'Create Customer Customer Demo'),
+                    'read'     => Yii::t('app', 'View Customer Customer Demo'),
+                    'update'   => Yii::t('app', 'Update Customer Customer Demo'),
+                    'delete'   => Yii::t('app', 'Delete Customer Customer Demo'),
                 ],
             ],
         ]);
@@ -89,11 +89,11 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
     }
 
     /**
-     * @return CustomerdemographicQuery
+     * @return CustomerDemographicQuery
      */
     public function getCustomerType()
     {
-        return $this->hasOne(Customerdemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customercustomerdemos');
+        return $this->hasOne(CustomerDemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customerCustomerDemos');
     }
 
     /**
@@ -101,15 +101,15 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
      */
     public function getCustomer()
     {
-        return $this->hasOne(Customer::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customercustomerdemos');
+        return $this->hasOne(Customer::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customerCustomerDemos');
     }
 
     /**
      * @inheritdoc
-     * @return CustomercustomerdemoQuery the active query used by this AR class.
+     * @return CustomerCustomerDemoQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new CustomercustomerdemoQuery(get_called_class());
+        return new CustomerCustomerDemoQuery(get_called_class());
     }
 }

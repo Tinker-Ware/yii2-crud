@@ -3,25 +3,25 @@
 namespace app\models;
 
 use Yii;
-use app\models\query\CustomerdemographicQuery;
+use app\models\query\CustomerDemographicQuery;
 
 /**
- * This is the model class for table "customerdemographics".
+ * This is the model class for table "CustomerDemographics".
  *
  * @property string $CustomerTypeID
  * @property string $CustomerDesc
  *
- * @property Customercustomerdemo[] $customercustomerdemos
+ * @property CustomerCustomerDemo[] $customerCustomerDemos
  * @property Customer[] $customers
  */
-class Customerdemographic extends \netis\crud\db\ActiveRecord
+class CustomerDemographic extends \netis\crud\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'customerdemographics';
+        return 'CustomerDemographics';
     }
 
     /**
@@ -64,13 +64,13 @@ class Customerdemographic extends \netis\crud\db\ActiveRecord
                 'class' => 'netis\crud\db\LabelsBehavior',
                 'attributes' => ['CustomerTypeID'],
                 'crudLabels' => [
-                    'default'  => Yii::t('app', 'Customerdemographic'),
-                    'relation' => Yii::t('app', 'Customerdemographics'),
-                    'index'    => Yii::t('app', 'Browse Customerdemographics'),
-                    'create'   => Yii::t('app', 'Create Customerdemographic'),
-                    'read'     => Yii::t('app', 'View Customerdemographic'),
-                    'update'   => Yii::t('app', 'Update Customerdemographic'),
-                    'delete'   => Yii::t('app', 'Delete Customerdemographic'),
+                    'default'  => Yii::t('app', 'Customer Demographic'),
+                    'relation' => Yii::t('app', 'Customer Demographics'),
+                    'index'    => Yii::t('app', 'Browse Customer Demographics'),
+                    'create'   => Yii::t('app', 'Create Customer Demographic'),
+                    'read'     => Yii::t('app', 'View Customer Demographic'),
+                    'update'   => Yii::t('app', 'Update Customer Demographic'),
+                    'delete'   => Yii::t('app', 'Delete Customer Demographic'),
                 ],
             ],
         ]);
@@ -82,17 +82,17 @@ class Customerdemographic extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
-            'customercustomerdemos',
+            'customerCustomerDemos',
             'customers',
         ];
     }
 
     /**
-     * @return CustomercustomerdemoQuery
+     * @return CustomerCustomerDemoQuery
      */
-    public function getCustomercustomerdemos()
+    public function getCustomerCustomerDemos()
     {
-        return $this->hasMany(Customercustomerdemo::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customerType');
+        return $this->hasMany(CustomerCustomerDemo::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customerType');
     }
 
     /**
@@ -100,15 +100,15 @@ class Customerdemographic extends \netis\crud\db\ActiveRecord
      */
     public function getCustomers()
     {
-        return $this->hasMany(Customer::className(), ['CustomerID' => 'CustomerID'])->viaTable('customercustomerdemo', ['CustomerTypeID' => 'CustomerTypeID']);
+        return $this->hasMany(Customer::className(), ['CustomerID' => 'CustomerID'])->viaTable('CustomerCustomerDemo', ['CustomerTypeID' => 'CustomerTypeID']);
     }
 
     /**
      * @inheritdoc
-     * @return CustomerdemographicQuery the active query used by this AR class.
+     * @return CustomerDemographicQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new CustomerdemographicQuery(get_called_class());
+        return new CustomerDemographicQuery(get_called_class());
     }
 }

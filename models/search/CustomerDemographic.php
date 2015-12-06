@@ -5,13 +5,13 @@ namespace app\models\search;
 use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
-use app\models\Customerdemographic as CustomerdemographicModel;
-use app\models\query\CustomerdemographicQuery;
+use app\models\CustomerDemographic as CustomerDemographicModel;
+use app\models\query\CustomerDemographicQuery;
 
 /**
- * Customerdemographic represents the model behind the search form about `\app\models\Customerdemographic`.
+ * CustomerDemographic represents the model behind the search form about `\app\models\CustomerDemographic`.
  */
-class Customerdemographic extends CustomerdemographicModel implements ActiveSearchInterface
+class CustomerDemographic extends CustomerDemographicModel implements ActiveSearchInterface
 {
     use \netis\crud\db\ActiveSearchTrait;
 
@@ -48,10 +48,10 @@ class Customerdemographic extends CustomerdemographicModel implements ActiveSear
 
     /**
      * @inheritdoc
-     * @return CustomerdemographicQuery the active query used by this AR class.
+     * @return CustomerDemographicQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new CustomerdemographicQuery('app\models\Customerdemographic');
+        return new CustomerDemographicQuery('app\models\CustomerDemographic');
     }
 }

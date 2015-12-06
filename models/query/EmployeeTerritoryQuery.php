@@ -3,11 +3,11 @@
 namespace app\models\query;
 
 /**
- * This is the ActiveQuery class for [[\app\models\ShippersTmp]].
+ * This is the ActiveQuery class for [[\app\models\EmployeeTerritory]].
  *
- * @see \app\models\ShippersTmp
+ * @see \app\models\EmployeeTerritory
  */
-class ShippersTmpQuery extends \netis\crud\db\ActiveQuery
+class EmployeeTerritoryQuery extends \netis\crud\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class ShippersTmpQuery extends \netis\crud\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\ShippersTmp[]|array
+     * @return \app\models\EmployeeTerritory[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class ShippersTmpQuery extends \netis\crud\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\ShippersTmp|array|null
+     * @return \app\models\EmployeeTerritory|array|null
      */
     public function one($db = null)
     {

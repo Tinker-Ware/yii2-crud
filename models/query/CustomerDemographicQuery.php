@@ -3,11 +3,11 @@
 namespace app\models\query;
 
 /**
- * This is the ActiveQuery class for [[\app\models\Employeeterritory]].
+ * This is the ActiveQuery class for [[\app\models\CustomerDemographic]].
  *
- * @see \app\models\Employeeterritory
+ * @see \app\models\CustomerDemographic
  */
-class EmployeeterritoryQuery extends \netis\crud\db\ActiveQuery
+class CustomerDemographicQuery extends \netis\crud\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class EmployeeterritoryQuery extends \netis\crud\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\Employeeterritory[]|array
+     * @return \app\models\CustomerDemographic[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class EmployeeterritoryQuery extends \netis\crud\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\Employeeterritory|array|null
+     * @return \app\models\CustomerDemographic|array|null
      */
     public function one($db = null)
     {

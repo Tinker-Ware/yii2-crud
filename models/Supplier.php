@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\SupplierQuery;
 
 /**
- * This is the model class for table "suppliers".
+ * This is the model class for table "Suppliers".
  *
  * @property integer $SupplierID
  * @property string $CompanyName
@@ -30,7 +30,7 @@ class Supplier extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'suppliers';
+        return 'Suppliers';
     }
 
     /**

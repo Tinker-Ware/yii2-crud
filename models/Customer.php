@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\CustomerQuery;
 
 /**
- * This is the model class for table "customers".
+ * This is the model class for table "Customers".
  *
  * @property string $CustomerID
  * @property string $CompanyName
@@ -20,8 +20,8 @@ use app\models\query\CustomerQuery;
  * @property string $Phone
  * @property string $Fax
  *
- * @property Customercustomerdemo[] $customercustomerdemos
- * @property Customerdemographic[] $customerTypes
+ * @property CustomerCustomerDemo[] $customerCustomerDemos
+ * @property CustomerDemographic[] $customerTypes
  * @property Order[] $orders
  */
 class Customer extends \netis\crud\db\ActiveRecord
@@ -31,7 +31,7 @@ class Customer extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'customers';
+        return 'Customers';
     }
 
     /**
@@ -106,26 +106,26 @@ class Customer extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
-            'customercustomerdemos',
+            'customerCustomerDemos',
             'customerTypes',
             'orders',
         ];
     }
 
     /**
-     * @return CustomercustomerdemoQuery
+     * @return CustomerCustomerDemoQuery
      */
-    public function getCustomercustomerdemos()
+    public function getCustomerCustomerDemos()
     {
-        return $this->hasMany(Customercustomerdemo::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customer');
+        return $this->hasMany(CustomerCustomerDemo::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customer');
     }
 
     /**
-     * @return CustomerdemographicQuery
+     * @return CustomerDemographicQuery
      */
     public function getCustomerTypes()
     {
-        return $this->hasMany(Customerdemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->viaTable('customercustomerdemo', ['CustomerID' => 'CustomerID']);
+        return $this->hasMany(CustomerDemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->viaTable('CustomerCustomerDemo', ['CustomerID' => 'CustomerID']);
     }
 
     /**

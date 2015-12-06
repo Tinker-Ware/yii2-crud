@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\OrderQuery;
 
 /**
- * This is the model class for table "orders".
+ * This is the model class for table "Orders".
  *
  * @property integer $OrderID
  * @property string $CustomerID
@@ -36,7 +36,7 @@ class Order extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'orders';
+        return 'Orders';
     }
 
     /**
@@ -141,7 +141,7 @@ class Order extends \netis\crud\db\ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(Product::className(), ['ProductID' => 'ProductID'])->viaTable('order_details', ['OrderID' => 'OrderID']);
+        return $this->hasMany(Product::className(), ['ProductID' => 'ProductID'])->viaTable('Order Details', ['OrderID' => 'OrderID']);
     }
 
     /**

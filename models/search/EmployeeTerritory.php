@@ -5,13 +5,13 @@ namespace app\models\search;
 use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
-use app\models\Employeeterritory as EmployeeterritoryModel;
-use app\models\query\EmployeeterritoryQuery;
+use app\models\EmployeeTerritory as EmployeeTerritoryModel;
+use app\models\query\EmployeeTerritoryQuery;
 
 /**
- * Employeeterritory represents the model behind the search form about `\app\models\Employeeterritory`.
+ * EmployeeTerritory represents the model behind the search form about `\app\models\EmployeeTerritory`.
  */
-class Employeeterritory extends EmployeeterritoryModel implements ActiveSearchInterface
+class EmployeeTerritory extends EmployeeTerritoryModel implements ActiveSearchInterface
 {
     use \netis\crud\db\ActiveSearchTrait;
 
@@ -49,10 +49,10 @@ class Employeeterritory extends EmployeeterritoryModel implements ActiveSearchIn
 
     /**
      * @inheritdoc
-     * @return EmployeeterritoryQuery the active query used by this AR class.
+     * @return EmployeeTerritoryQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new EmployeeterritoryQuery('app\models\Employeeterritory');
+        return new EmployeeTerritoryQuery('app\models\EmployeeTerritory');
     }
 }

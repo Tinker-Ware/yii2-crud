@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\EmployeeQuery;
 
 /**
- * This is the model class for table "employees".
+ * This is the model class for table "Employees".
  *
  * @property integer $EmployeeID
  * @property string $LastName
@@ -27,10 +27,10 @@ use app\models\query\EmployeeQuery;
  * @property integer $ReportsTo
  * @property string $PhotoPath
  *
+ * @property EmployeeTerritory[] $employeeTerritories
+ * @property Territory[] $territories
  * @property Employee $reportsTo
  * @property Employee[] $employees
- * @property Employeeterritory[] $employeeterritories
- * @property Territory[] $territories
  * @property Order[] $orders
  */
 class Employee extends \netis\crud\db\ActiveRecord
@@ -40,7 +40,7 @@ class Employee extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'employees';
+        return 'Employees';
     }
 
     /**
@@ -130,12 +130,28 @@ class Employee extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'employeeTerritories',
+            'territories',
             'reportsTo',
             'employees',
-            'employeeterritories',
-            'territories',
             'orders',
         ];
+    }
+
+    /**
+     * @return EmployeeTerritoryQuery
+     */
+    public function getEmployeeTerritories()
+    {
+        return $this->hasMany(EmployeeTerritory::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('employee');
+    }
+
+    /**
+     * @return TerritoryQuery
+     */
+    public function getTerritories()
+    {
+        return $this->hasMany(Territory::className(), ['TerritoryID' => 'TerritoryID'])->viaTable('EmployeeTerritories', ['EmployeeID' => 'EmployeeID']);
     }
 
     /**
@@ -152,22 +168,6 @@ class Employee extends \netis\crud\db\ActiveRecord
     public function getEmployees()
     {
         return $this->hasMany(Employee::className(), ['ReportsTo' => 'EmployeeID'])->inverseOf('reportsTo');
-    }
-
-    /**
-     * @return EmployeeterritoryQuery
-     */
-    public function getEmployeeterritories()
-    {
-        return $this->hasMany(Employeeterritory::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('employee');
-    }
-
-    /**
-     * @return TerritoryQuery
-     */
-    public function getTerritories()
-    {
-        return $this->hasMany(Territory::className(), ['TerritoryID' => 'TerritoryID'])->viaTable('employeeterritories', ['EmployeeID' => 'EmployeeID']);
     }
 
     /**

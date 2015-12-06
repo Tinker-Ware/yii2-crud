@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\RegionQuery;
 
 /**
- * This is the model class for table "region".
+ * This is the model class for table "Regions".
  *
  * @property integer $RegionID
  * @property string $RegionDescription
@@ -20,7 +20,7 @@ class Region extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'region';
+        return 'Regions';
     }
 
     /**

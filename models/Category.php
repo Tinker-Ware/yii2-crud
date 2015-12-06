@@ -6,7 +6,7 @@ use Yii;
 use app\models\query\CategoryQuery;
 
 /**
- * This is the model class for table "categories".
+ * This is the model class for table "Categories".
  *
  * @property integer $CategoryID
  * @property string $CategoryName
@@ -22,7 +22,7 @@ class Category extends \netis\crud\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'categories';
+        return 'Categories';
     }
 
     /**
