@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\OrderQuery;
 
 /**
  * This is the model class for table "orders".
@@ -21,6 +22,12 @@ use Yii;
  * @property string $ShipRegion
  * @property string $ShipPostalCode
  * @property string $ShipCountry
+ *
+ * @property OrderDetail[] $orderDetails
+ * @property Product[] $products
+ * @property Customer $customer
+ * @property Employee $employee
+ * @property Shipper $shipVia
  */
 class Order extends \netis\crud\db\ActiveRecord
 {
@@ -59,6 +66,9 @@ class Order extends \netis\crud\db\ActiveRecord
             [['ShipAddress'], 'string', 'max' => 60],
             [['ShipCity', 'ShipRegion', 'ShipCountry'], 'string', 'max' => 15],
             [['ShipPostalCode'], 'string', 'max' => 10],
+            [['CustomerID'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['CustomerID' => 'CustomerID']],
+            [['EmployeeID'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['EmployeeID' => 'EmployeeID']],
+            [['ShipVia'], 'exist', 'skipOnError' => true, 'targetClass' => Shipper::className(), 'targetAttribute' => ['ShipVia' => 'ShipperID']],
         ];
     }
 
@@ -110,7 +120,52 @@ class Order extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'orderDetails',
+            'products',
+            'customer',
+            'employee',
+            'shipVia',
         ];
+    }
+
+    /**
+     * @return OrderDetailQuery
+     */
+    public function getOrderDetails()
+    {
+        return $this->hasMany(OrderDetail::className(), ['OrderID' => 'OrderID'])->inverseOf('order');
+    }
+
+    /**
+     * @return ProductQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['ProductID' => 'ProductID'])->viaTable('order_details', ['OrderID' => 'OrderID']);
+    }
+
+    /**
+     * @return CustomerQuery
+     */
+    public function getCustomer()
+    {
+        return $this->hasOne(Customer::className(), ['CustomerID' => 'CustomerID'])->inverseOf('orders');
+    }
+
+    /**
+     * @return EmployeeQuery
+     */
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('orders');
+    }
+
+    /**
+     * @return ShipperQuery
+     */
+    public function getShipVia()
+    {
+        return $this->hasOne(Shipper::className(), ['ShipperID' => 'ShipVia'])->inverseOf('orders');
     }
 
     /**

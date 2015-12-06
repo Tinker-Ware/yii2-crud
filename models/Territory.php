@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\TerritoryQuery;
 
 /**
  * This is the model class for table "territories".
@@ -10,6 +11,10 @@ use Yii;
  * @property string $TerritoryID
  * @property string $TerritoryDescription
  * @property integer $RegionID
+ *
+ * @property Employeeterritory[] $employeeterritories
+ * @property Employee[] $employees
+ * @property Region $region
  */
 class Territory extends \netis\crud\db\ActiveRecord
 {
@@ -41,6 +46,7 @@ class Territory extends \netis\crud\db\ActiveRecord
             [['TerritoryID', 'TerritoryDescription', 'RegionID'], 'required'],
             [['TerritoryID'], 'string', 'max' => 20],
             [['RegionID'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
+            [['RegionID'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['RegionID' => 'RegionID']],
         ];
     }
 
@@ -81,7 +87,34 @@ class Territory extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'employeeterritories',
+            'employees',
+            'region',
         ];
+    }
+
+    /**
+     * @return EmployeeterritoryQuery
+     */
+    public function getEmployeeterritories()
+    {
+        return $this->hasMany(Employeeterritory::className(), ['TerritoryID' => 'TerritoryID'])->inverseOf('territory');
+    }
+
+    /**
+     * @return EmployeeQuery
+     */
+    public function getEmployees()
+    {
+        return $this->hasMany(Employee::className(), ['EmployeeID' => 'EmployeeID'])->viaTable('employeeterritories', ['TerritoryID' => 'TerritoryID']);
+    }
+
+    /**
+     * @return RegionQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(Region::className(), ['RegionID' => 'RegionID'])->inverseOf('territories');
     }
 
     /**

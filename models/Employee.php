@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\EmployeeQuery;
 
 /**
  * This is the model class for table "employees".
@@ -25,6 +26,12 @@ use Yii;
  * @property string $Notes
  * @property integer $ReportsTo
  * @property string $PhotoPath
+ *
+ * @property Employee $reportsTo
+ * @property Employee[] $employees
+ * @property Employeeterritory[] $employeeterritories
+ * @property Territory[] $territories
+ * @property Order[] $orders
  */
 class Employee extends \netis\crud\db\ActiveRecord
 {
@@ -67,6 +74,7 @@ class Employee extends \netis\crud\db\ActiveRecord
             [['HomePhone'], 'string', 'max' => 24],
             [['Extension'], 'string', 'max' => 4],
             [['PhotoPath'], 'string', 'max' => 255],
+            [['ReportsTo'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['ReportsTo' => 'EmployeeID']],
         ];
     }
 
@@ -122,7 +130,52 @@ class Employee extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'reportsTo',
+            'employees',
+            'employeeterritories',
+            'territories',
+            'orders',
         ];
+    }
+
+    /**
+     * @return EmployeeQuery
+     */
+    public function getReportsTo()
+    {
+        return $this->hasOne(Employee::className(), ['EmployeeID' => 'ReportsTo'])->inverseOf('employees');
+    }
+
+    /**
+     * @return EmployeeQuery
+     */
+    public function getEmployees()
+    {
+        return $this->hasMany(Employee::className(), ['ReportsTo' => 'EmployeeID'])->inverseOf('reportsTo');
+    }
+
+    /**
+     * @return EmployeeterritoryQuery
+     */
+    public function getEmployeeterritories()
+    {
+        return $this->hasMany(Employeeterritory::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('employee');
+    }
+
+    /**
+     * @return TerritoryQuery
+     */
+    public function getTerritories()
+    {
+        return $this->hasMany(Territory::className(), ['TerritoryID' => 'TerritoryID'])->viaTable('employeeterritories', ['EmployeeID' => 'EmployeeID']);
+    }
+
+    /**
+     * @return OrderQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('employee');
     }
 
     /**

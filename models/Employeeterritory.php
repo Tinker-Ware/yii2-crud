@@ -3,12 +3,16 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\EmployeeterritoryQuery;
 
 /**
  * This is the model class for table "employeeterritories".
  *
  * @property integer $EmployeeID
  * @property string $TerritoryID
+ *
+ * @property Employee $employee
+ * @property Territory $territory
  */
 class Employeeterritory extends \netis\crud\db\ActiveRecord
 {
@@ -40,6 +44,8 @@ class Employeeterritory extends \netis\crud\db\ActiveRecord
             [['EmployeeID', 'TerritoryID'], 'required'],
             [['EmployeeID'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
             [['TerritoryID'], 'string', 'max' => 20],
+            [['EmployeeID'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['EmployeeID' => 'EmployeeID']],
+            [['TerritoryID'], 'exist', 'skipOnError' => true, 'targetClass' => Territory::className(), 'targetAttribute' => ['TerritoryID' => 'TerritoryID']],
         ];
     }
 
@@ -79,7 +85,25 @@ class Employeeterritory extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'employee',
+            'territory',
         ];
+    }
+
+    /**
+     * @return EmployeeQuery
+     */
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::className(), ['EmployeeID' => 'EmployeeID'])->inverseOf('employeeterritories');
+    }
+
+    /**
+     * @return TerritoryQuery
+     */
+    public function getTerritory()
+    {
+        return $this->hasOne(Territory::className(), ['TerritoryID' => 'TerritoryID'])->inverseOf('employeeterritories');
     }
 
     /**

@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Customer as CustomerModel;
-use app\models\CustomerQuery;
+use app\models\query\CustomerQuery;
 
 /**
  * Customer represents the model behind the search form about `\app\models\Customer`.

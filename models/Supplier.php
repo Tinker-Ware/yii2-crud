@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\SupplierQuery;
 
 /**
  * This is the model class for table "suppliers".
@@ -19,6 +20,8 @@ use Yii;
  * @property string $Phone
  * @property string $Fax
  * @property string $HomePage
+ *
+ * @property Product[] $products
  */
 class Supplier extends \netis\crud\db\ActiveRecord
 {
@@ -105,7 +108,16 @@ class Supplier extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'products',
         ];
+    }
+
+    /**
+     * @return ProductQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['SupplierID' => 'SupplierID'])->inverseOf('supplier');
     }
 
     /**

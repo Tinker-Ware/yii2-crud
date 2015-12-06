@@ -3,12 +3,15 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\RegionQuery;
 
 /**
  * This is the model class for table "region".
  *
  * @property integer $RegionID
  * @property string $RegionDescription
+ *
+ * @property Territory[] $territories
  */
 class Region extends \netis\crud\db\ActiveRecord
 {
@@ -78,7 +81,16 @@ class Region extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'territories',
         ];
+    }
+
+    /**
+     * @return TerritoryQuery
+     */
+    public function getTerritories()
+    {
+        return $this->hasMany(Territory::className(), ['RegionID' => 'RegionID'])->inverseOf('region');
     }
 
     /**

@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\OrderDetail as OrderDetailModel;
-use app\models\OrderDetailQuery;
+use app\models\query\OrderDetailQuery;
 
 /**
  * OrderDetail represents the model behind the search form about `\app\models\OrderDetail`.

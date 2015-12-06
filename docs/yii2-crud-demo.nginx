@@ -38,9 +38,6 @@ server {
         fastcgi_param SCRIPT_FILENAME $document_root/index.php;
         fastcgi_param YII_ENV dev;
         fastcgi_param YII_DEBUG true;
-        fastcgi_param YII_TRAINING true;
-        fastcgi_param YII_DEBUG_SHOW_PROFILER true;
-        #fastcgi_param YII_DEBUG_DISPLAY_TIME true;
         fastcgi_read_timeout 3600;
     }
 }

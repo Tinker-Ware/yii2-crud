@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Customerdemographic as CustomerdemographicModel;
-use app\models\CustomerdemographicQuery;
+use app\models\query\CustomerdemographicQuery;
 
 /**
  * Customerdemographic represents the model behind the search form about `\app\models\Customerdemographic`.

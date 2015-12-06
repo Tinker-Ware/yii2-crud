@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Usstate as UsstateModel;
-use app\models\UsstateQuery;
+use app\models\query\UsstateQuery;
 
 /**
  * Usstate represents the model behind the search form about `\app\models\Usstate`.

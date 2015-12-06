@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Territory as TerritoryModel;
-use app\models\TerritoryQuery;
+use app\models\query\TerritoryQuery;
 
 /**
  * Territory represents the model behind the search form about `\app\models\Territory`.
@@ -23,7 +23,7 @@ class Territory extends TerritoryModel implements ActiveSearchInterface
         return [
             [['TerritoryID', 'TerritoryDescription', 'RegionID'], 'trim'],
             [['TerritoryID', 'TerritoryDescription', 'RegionID'], 'default'],
-            [['TerritoryID'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
+            [['TerritoryID', 'RegionID'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
         ];
     }
 
@@ -34,7 +34,7 @@ class Territory extends TerritoryModel implements ActiveSearchInterface
     {
         return [
             [['TerritoryID', 'TerritoryDescription'], 'safe'],
-            [['RegionID'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
+            [['RegionID'], 'each', 'rule' => ['integer', 'min' => -0x8000, 'max' => 0x7FFF]],
         ];
     }
 

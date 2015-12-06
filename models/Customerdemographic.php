@@ -3,12 +3,16 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\CustomerdemographicQuery;
 
 /**
  * This is the model class for table "customerdemographics".
  *
  * @property string $CustomerTypeID
  * @property string $CustomerDesc
+ *
+ * @property Customercustomerdemo[] $customercustomerdemos
+ * @property Customer[] $customers
  */
 class Customerdemographic extends \netis\crud\db\ActiveRecord
 {
@@ -78,7 +82,25 @@ class Customerdemographic extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'customercustomerdemos',
+            'customers',
         ];
+    }
+
+    /**
+     * @return CustomercustomerdemoQuery
+     */
+    public function getCustomercustomerdemos()
+    {
+        return $this->hasMany(Customercustomerdemo::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customerType');
+    }
+
+    /**
+     * @return CustomerQuery
+     */
+    public function getCustomers()
+    {
+        return $this->hasMany(Customer::className(), ['CustomerID' => 'CustomerID'])->viaTable('customercustomerdemo', ['CustomerTypeID' => 'CustomerTypeID']);
     }
 
     /**

@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Region as RegionModel;
-use app\models\RegionQuery;
+use app\models\query\RegionQuery;
 
 /**
  * Region represents the model behind the search form about `\app\models\Region`.

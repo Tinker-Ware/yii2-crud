@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\ShippersTmpQuery;
 
 /**
  * This is the model class for table "shippers_tmp".

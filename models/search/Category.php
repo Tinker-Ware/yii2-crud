@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Category as CategoryModel;
-use app\models\CategoryQuery;
+use app\models\query\CategoryQuery;
 
 /**
  * Category represents the model behind the search form about `\app\models\Category`.

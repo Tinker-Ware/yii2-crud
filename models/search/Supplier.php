@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Supplier as SupplierModel;
-use app\models\SupplierQuery;
+use app\models\query\SupplierQuery;
 
 /**
  * Supplier represents the model behind the search form about `\app\models\Supplier`.

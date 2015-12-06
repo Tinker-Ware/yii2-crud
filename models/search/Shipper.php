@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Shipper as ShipperModel;
-use app\models\ShipperQuery;
+use app\models\query\ShipperQuery;
 
 /**
  * Shipper represents the model behind the search form about `\app\models\Shipper`.

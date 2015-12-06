@@ -3,12 +3,16 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\CustomercustomerdemoQuery;
 
 /**
  * This is the model class for table "customercustomerdemo".
  *
  * @property string $CustomerID
  * @property string $CustomerTypeID
+ *
+ * @property Customerdemographic $customerType
+ * @property Customer $customer
  */
 class Customercustomerdemo extends \netis\crud\db\ActiveRecord
 {
@@ -38,6 +42,8 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
     {
         return [
             [['CustomerID', 'CustomerTypeID'], 'required'],
+            [['CustomerTypeID'], 'exist', 'skipOnError' => true, 'targetClass' => Customerdemographic::className(), 'targetAttribute' => ['CustomerTypeID' => 'CustomerTypeID']],
+            [['CustomerID'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['CustomerID' => 'CustomerID']],
         ];
     }
 
@@ -77,7 +83,25 @@ class Customercustomerdemo extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'customerType',
+            'customer',
         ];
+    }
+
+    /**
+     * @return CustomerdemographicQuery
+     */
+    public function getCustomerType()
+    {
+        return $this->hasOne(Customerdemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->inverseOf('customercustomerdemos');
+    }
+
+    /**
+     * @return CustomerQuery
+     */
+    public function getCustomer()
+    {
+        return $this->hasOne(Customer::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customercustomerdemos');
     }
 
     /**

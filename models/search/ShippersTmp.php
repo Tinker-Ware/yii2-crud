@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\ShippersTmp as ShippersTmpModel;
-use app\models\ShippersTmpQuery;
+use app\models\query\ShippersTmpQuery;
 
 /**
  * ShippersTmp represents the model behind the search form about `\app\models\ShippersTmp`.

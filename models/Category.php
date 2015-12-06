@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\CategoryQuery;
 
 /**
  * This is the model class for table "categories".
@@ -11,6 +12,8 @@ use Yii;
  * @property string $CategoryName
  * @property string $Description
  * @property resource $Picture
+ *
+ * @property Product[] $products
  */
 class Category extends \netis\crud\db\ActiveRecord
 {
@@ -84,7 +87,16 @@ class Category extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'products',
         ];
+    }
+
+    /**
+     * @return ProductQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['CategoryID' => 'CategoryID'])->inverseOf('category');
     }
 
     /**

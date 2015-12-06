@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\OrderDetailQuery;
 
 /**
  * This is the model class for table "order_details".
@@ -12,6 +13,9 @@ use Yii;
  * @property double $UnitPrice
  * @property integer $Quantity
  * @property double $Discount
+ *
+ * @property Order $order
+ * @property Product $product
  */
 class OrderDetail extends \netis\crud\db\ActiveRecord
 {
@@ -43,6 +47,8 @@ class OrderDetail extends \netis\crud\db\ActiveRecord
             [['OrderID', 'ProductID', 'UnitPrice', 'Quantity', 'Discount'], 'required'],
             [['OrderID', 'ProductID', 'Quantity'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
             [['UnitPrice', 'Discount'], 'number'],
+            [['OrderID'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['OrderID' => 'OrderID']],
+            [['ProductID'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['ProductID' => 'ProductID']],
         ];
     }
 
@@ -85,7 +91,25 @@ class OrderDetail extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'order',
+            'product',
         ];
+    }
+
+    /**
+     * @return OrderQuery
+     */
+    public function getOrder()
+    {
+        return $this->hasOne(Order::className(), ['OrderID' => 'OrderID'])->inverseOf('orderDetails');
+    }
+
+    /**
+     * @return ProductQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Product::className(), ['ProductID' => 'ProductID'])->inverseOf('orderDetails');
     }
 
     /**

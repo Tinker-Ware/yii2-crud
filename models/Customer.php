@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\CustomerQuery;
 
 /**
  * This is the model class for table "customers".
@@ -18,6 +19,10 @@ use Yii;
  * @property string $Country
  * @property string $Phone
  * @property string $Fax
+ *
+ * @property Customercustomerdemo[] $customercustomerdemos
+ * @property Customerdemographic[] $customerTypes
+ * @property Order[] $orders
  */
 class Customer extends \netis\crud\db\ActiveRecord
 {
@@ -101,7 +106,34 @@ class Customer extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'customercustomerdemos',
+            'customerTypes',
+            'orders',
         ];
+    }
+
+    /**
+     * @return CustomercustomerdemoQuery
+     */
+    public function getCustomercustomerdemos()
+    {
+        return $this->hasMany(Customercustomerdemo::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customer');
+    }
+
+    /**
+     * @return CustomerdemographicQuery
+     */
+    public function getCustomerTypes()
+    {
+        return $this->hasMany(Customerdemographic::className(), ['CustomerTypeID' => 'CustomerTypeID'])->viaTable('customercustomerdemo', ['CustomerID' => 'CustomerID']);
+    }
+
+    /**
+     * @return OrderQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['CustomerID' => 'CustomerID'])->inverseOf('customer');
     }
 
     /**

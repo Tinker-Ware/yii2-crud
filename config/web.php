@@ -38,49 +38,56 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'controllerMap' => [
-        [
-            'category' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Category::className(),
-            ],
-            'customer' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Customer::className(),
-            ],
-            'employee' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Employee::className(),
-            ],
-            'order' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Order::className(),
-            ],
-            'product' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Product::className(),
-            ],
-            'region' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Region::className(),
-            ],
-            'shipper' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Shipper::className(),
-            ],
-            'supplier' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Supplier::className(),
-            ],
-            'terittory' => [
-                'class' => \netis\crud\crud\ActiveController::className(),
-                'modelClass' => \app\models\Terittory::className(),
-            ],
+        'category' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Category',
+            'searchModelClass' => 'app\models\search\Category',
+        ],
+        'customer' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Customer',
+            'searchModelClass' => 'app\models\search\Customer',
+        ],
+        'employee' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Employee',
+            'searchModelClass' => 'app\models\search\Employee',
+        ],
+        'order' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Order',
+            'searchModelClass' => 'app\models\search\Order',
+        ],
+        'product' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Product',
+            'searchModelClass' => 'app\models\search\Product',
+        ],
+        'region' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Region',
+            'searchModelClass' => 'app\models\search\Region',
+        ],
+        'shipper' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Shipper',
+            'searchModelClass' => 'app\models\search\Shipper',
+        ],
+        'supplier' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Supplier',
+            'searchModelClass' => 'app\models\search\Supplier',
+        ],
+        'terittory' => [
+            'class' => \netis\crud\crud\ActiveController::className(),
+            'modelClass' => 'app\models\Terittory',
+            'searchModelClass' => 'app\models\search\Territory',
         ],
     ],
     'params' => $params,
 ];
 
-if (YII_ENV_DEV) {
+if (YII_ENV === 'dev') {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

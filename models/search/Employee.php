@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Employee as EmployeeModel;
-use app\models\EmployeeQuery;
+use app\models\query\EmployeeQuery;
 
 /**
  * Employee represents the model behind the search form about `\app\models\Employee`.
@@ -23,7 +23,7 @@ class Employee extends EmployeeModel implements ActiveSearchInterface
         return [
             [['EmployeeID', 'LastName', 'FirstName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath'], 'trim'],
             [['EmployeeID', 'LastName', 'FirstName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath'], 'default'],
-            [['EmployeeID'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
+            [['EmployeeID', 'ReportsTo'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
             [['BirthDate', 'HireDate'], 'filter', 'filter' => [Yii::$app->formatter, 'filterDate']],
         ];
     }
@@ -36,8 +36,7 @@ class Employee extends EmployeeModel implements ActiveSearchInterface
         return [
             [['BirthDate', 'HireDate'], 'date', 'format' => 'yyyy-MM-dd'],
             [['Photo', 'Notes'], 'safe'],
-            [['ReportsTo'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
-            [['EmployeeID'], 'each', 'rule' => ['integer', 'min' => -0x8000, 'max' => 0x7FFF]],
+            [['EmployeeID', 'ReportsTo'], 'each', 'rule' => ['integer', 'min' => -0x8000, 'max' => 0x7FFF]],
             [['LastName'], 'string', 'max' => 20],
             [['FirstName', 'PostalCode'], 'string', 'max' => 10],
             [['Title'], 'string', 'max' => 30],

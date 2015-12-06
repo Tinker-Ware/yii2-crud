@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\ProductQuery;
 
 /**
  * This is the model class for table "products".
@@ -17,6 +18,11 @@ use Yii;
  * @property integer $UnitsOnOrder
  * @property integer $ReorderLevel
  * @property integer $Discontinued
+ *
+ * @property OrderDetail[] $orderDetails
+ * @property Order[] $orders
+ * @property Category $category
+ * @property Supplier $supplier
  */
 class Product extends \netis\crud\db\ActiveRecord
 {
@@ -51,6 +57,8 @@ class Product extends \netis\crud\db\ActiveRecord
             [['QuantityPerUnit'], 'string', 'max' => 20],
             [['UnitPrice'], 'number'],
             [['Discontinued'], 'integer', 'min' => -0x80000000, 'max' => 0x7FFFFFFF],
+            [['CategoryID'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['CategoryID' => 'CategoryID']],
+            [['SupplierID'], 'exist', 'skipOnError' => true, 'targetClass' => Supplier::className(), 'targetAttribute' => ['SupplierID' => 'SupplierID']],
         ];
     }
 
@@ -98,7 +106,43 @@ class Product extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'orderDetails',
+            'orders',
+            'category',
+            'supplier',
         ];
+    }
+
+    /**
+     * @return OrderDetailQuery
+     */
+    public function getOrderDetails()
+    {
+        return $this->hasMany(OrderDetail::className(), ['ProductID' => 'ProductID'])->inverseOf('product');
+    }
+
+    /**
+     * @return OrderQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['OrderID' => 'OrderID'])->viaTable('order_details', ['ProductID' => 'ProductID']);
+    }
+
+    /**
+     * @return CategoryQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['CategoryID' => 'CategoryID'])->inverseOf('products');
+    }
+
+    /**
+     * @return SupplierQuery
+     */
+    public function getSupplier()
+    {
+        return $this->hasOne(Supplier::className(), ['SupplierID' => 'SupplierID'])->inverseOf('products');
     }
 
     /**

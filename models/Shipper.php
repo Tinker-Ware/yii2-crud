@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\query\ShipperQuery;
 
 /**
  * This is the model class for table "shippers".
@@ -10,6 +11,8 @@ use Yii;
  * @property integer $ShipperID
  * @property string $CompanyName
  * @property string $Phone
+ *
+ * @property Order[] $orders
  */
 class Shipper extends \netis\crud\db\ActiveRecord
 {
@@ -82,7 +85,16 @@ class Shipper extends \netis\crud\db\ActiveRecord
     public static function relations()
     {
         return [
+            'orders',
         ];
+    }
+
+    /**
+     * @return OrderQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['ShipVia' => 'ShipperID'])->inverseOf('shipVia');
     }
 
     /**

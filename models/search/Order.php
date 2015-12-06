@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Order as OrderModel;
-use app\models\OrderQuery;
+use app\models\query\OrderQuery;
 
 /**
  * Order represents the model behind the search form about `\app\models\Order`.
@@ -23,7 +23,7 @@ class Order extends OrderModel implements ActiveSearchInterface
         return [
             [['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry'], 'trim'],
             [['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry'], 'default'],
-            [['OrderID'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
+            [['OrderID', 'CustomerID', 'EmployeeID', 'ShipVia'], 'filter', 'filter' => '\netis\crud\crud\Action::explodeKeys'],
             [['OrderDate', 'RequiredDate', 'ShippedDate'], 'filter', 'filter' => [Yii::$app->formatter, 'filterDate']],
         ];
     }
@@ -36,8 +36,7 @@ class Order extends OrderModel implements ActiveSearchInterface
         return [
             [['OrderDate', 'RequiredDate', 'ShippedDate'], 'date', 'format' => 'yyyy-MM-dd'],
             [['CustomerID'], 'safe'],
-            [['EmployeeID', 'ShipVia'], 'integer', 'min' => -0x8000, 'max' => 0x7FFF],
-            [['OrderID'], 'each', 'rule' => ['integer', 'min' => -0x8000, 'max' => 0x7FFF]],
+            [['OrderID', 'EmployeeID', 'ShipVia'], 'each', 'rule' => ['integer', 'min' => -0x8000, 'max' => 0x7FFF]],
             [['Freight'], 'number'],
             [['ShipName'], 'string', 'max' => 40],
             [['ShipAddress'], 'string', 'max' => 60],

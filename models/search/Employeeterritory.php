@@ -6,7 +6,7 @@ use netis\crud\db\ActiveSearchInterface;
 use Yii;
 use yii\base\Model;
 use app\models\Employeeterritory as EmployeeterritoryModel;
-use app\models\EmployeeterritoryQuery;
+use app\models\query\EmployeeterritoryQuery;
 
 /**
  * Employeeterritory represents the model behind the search form about `\app\models\Employeeterritory`.
