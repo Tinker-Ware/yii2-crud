@@ -110,7 +110,7 @@ class Employee extends \netis\crud\db\ActiveRecord
         return array_merge(parent::behaviors(), [
             'labels' => [
                 'class' => 'netis\crud\db\LabelsBehavior',
-                'attributes' => ['Title'],
+                'attributes' => ['FirstName', 'LastName'],
                 'crudLabels' => [
                     'default'  => Yii::t('app', 'Employee'),
                     'relation' => Yii::t('app', 'Employees'),
