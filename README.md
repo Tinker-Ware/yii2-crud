@@ -1,7 +1,8 @@
 Yii 2 CRUD Demo
 ===============
 
-Demo project presenting the [yii2-crud](https://github.com/netis-pl/yii2-crud) extension on the Northwind example database.
+Demo project presenting the [yii2-crud](https://github.com/netis-pl/yii2-crud) extension
+on the Northwind example database.
 
 Preparation steps:
 
@@ -21,9 +22,12 @@ CRUD steps:
 
 CRUD customization:
 
-* overriden Category and Employee picture fields
+* overridden Category and Employee picture fields
 
 ## Usage
 
 `composer create-project -s dev netis/yii2-crud-demo crud.niix.pl/`
 
+Install the database, load schema from _docs/northwind.postgre.sql_ and apply migrations. Update app config if required.
+
+Log in using **admin** username and **admin** password.

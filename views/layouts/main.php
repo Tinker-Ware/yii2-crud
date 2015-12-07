@@ -76,6 +76,9 @@ use yii\widgets\Breadcrumbs;
     ?>
 
     <div class="container">
+        <br/>
+        <br/>
+        <br/>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
