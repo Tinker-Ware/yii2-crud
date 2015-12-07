@@ -4,6 +4,8 @@ Yii 2 CRUD Demo
 Demo project presenting the [yii2-crud](https://github.com/netis-pl/yii2-crud) extension
 on the Northwind example database.
 
+Sources available at https://github.com/netis-pl/yii2-crud-demo.
+
 Preparation steps:
 
 * cleaned up the basic yii2 application template
