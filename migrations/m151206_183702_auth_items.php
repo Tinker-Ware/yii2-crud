@@ -46,7 +46,10 @@ class m151206_183702_auth_items extends Migration
 
         foreach ($this->models as $model) {
             foreach (['create', 'read', 'update', 'delete'] as $opName) {
-                $auth->remove($auth->getPermission('app\\models\\' . $model . '.' . $opName));
+                $item = $auth->getPermission('app\\models\\' . $model . '.' . $opName);
+                if ($item !== null) {
+                    $auth->remove($item);
+                }
             }
         }
     }
