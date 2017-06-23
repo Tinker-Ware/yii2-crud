@@ -1,4 +1,4 @@
-Yii 2 CRUD Demo
+Yii 2 CRUD Demo2
 ===============
 
 Demo project presenting the [yii2-crud](https://github.com/netis-pl/yii2-crud) extension
